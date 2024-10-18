@@ -22,7 +22,8 @@
 #     print(f"Error {e}")
 
 import mysql.connector
-from mysql.connector import Error
+
+# from mysql.connector import Error
 
 try:
 
@@ -39,5 +40,10 @@ try:
     cursor.execute("USE alx_book_store")
 
 
-except Error as e:
+except mysql.connector.Error as e:
     print(f"Error {e}")
+
+finally:
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
